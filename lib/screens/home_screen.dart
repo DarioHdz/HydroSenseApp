@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:wifi_iot/wifi_iot.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,9 +13,8 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Título principal
             const Text(
-              'HiTemp',
+              'HydroSense',
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
 
             // Subtítulo
             const Text(
-              'Sensor Hidrológico',
+              'Sistema de sensores para monitoreo ambiental',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white70,
@@ -36,40 +37,42 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 60),
 
-            // Botón para conectar Bluetooth
-            ElevatedButton.icon(
-              icon: const Icon(Icons.bluetooth, size: 28),
-              label: const Text(
-                'Conectar por Bluetooth',
-                style: TextStyle(fontSize: 18),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyan,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () {
-                // Aquí se implementará la lógica para mostrar dispositivos emparejados
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Dispositivos emparejados'),
-                    content: const Text('Aquí se listarán los dispositivos Bluetooth vinculados.'),
-                    actions: [
-                      TextButton(
-                        child: const Text('Cerrar'),
-                        onPressed: () => Navigator.of(context).pop(),
-                      )
-                    ],
+            // Botones de conexion
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.wifi),
+                  label: const Text('Conectar por WiFi'),
+                  onPressed: (){},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
-                );
-              },
+                ),
+
+                const SizedBox(height: 20),
+
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.bluetooth),
+                  label: const Text('Conectar por Bluetooth'),
+                  onPressed: (){},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyan,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                ),
+
+              ],
             )
+
           ],
         ),
       ),
     );
   }
+
 }
